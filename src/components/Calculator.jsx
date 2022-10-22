@@ -21,7 +21,7 @@ const Calculator = () => {
 
   function addInput(input) {
     if (input.length > 1) return;
-    if (calc.length > 9) return;
+    if (calc.length > 10) return;
     if (!isNumber(input) && !isNumber(calc[calc.length - 1])) return;
     if (!isNumber(input) && calc == '0') return;
 
