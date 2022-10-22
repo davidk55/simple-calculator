@@ -34,7 +34,7 @@ const Calculator = () => {
   }
 
   function evalCalc() {
-    setCalc((prevCalc) => +eval(prevCalc).toFixed(5).toString());
+    setCalc((prevCalc) => (+eval(prevCalc).toFixed(5)).toString());
   }
 
   function toggleSign() {
