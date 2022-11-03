@@ -48,6 +48,8 @@ const Calculator = () => {
   }
 
   function toggleSign() {
+    if (calc == '0') return;
+
     // position before number
     let pos = calc.length - 1;
     while (isNumberOrDot(calc[pos])) {
