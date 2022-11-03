@@ -15,17 +15,27 @@ const Calculator = () => {
 
   const [calc, setCalc] = useState('0');
 
-  function isNumber(char) {
-    return /[0-9]/.test(char);
+  function isNumberOrDot(char) {
+    return /[0-9.]/.test(char);
+  }
+
+  function lastNumberContainsDot(expr) {
+    let pos = expr.length - 1;
+    while (isNumberOrDot(expr[pos])) {
+      if (expr[pos] == '.') return true;
+      pos--;
+    }
+    return false;
   }
 
   function addInput(input) {
     if (input.length > 1) return;
     if (calc.length > 10) return;
-    if (!isNumber(input) && !isNumber(calc[calc.length - 1])) return;
-    if (!isNumber(input) && calc == '0') return;
+    if (!isNumberOrDot(input) && !isNumberOrDot(calc[calc.length - 1])) return;
+    if (!isNumberOrDot(input) && calc == '0') return;
+    if (input == '.' && lastNumberContainsDot(calc)) return;
 
-    if (calc == '0') setCalc(input.toString());
+    if (calc == '0' && input != '.') setCalc(input.toString());
     else setCalc((prevCalc) => prevCalc + input);
   }
 
@@ -40,7 +50,7 @@ const Calculator = () => {
   function toggleSign() {
     // position before number
     let pos = calc.length - 1;
-    while (isNumber(calc[pos]) || calc[pos] == '.') {
+    while (isNumberOrDot(calc[pos])) {
       pos--;
     }
 
