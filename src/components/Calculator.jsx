@@ -44,6 +44,9 @@ const Calculator = () => {
   }
 
   function evalCalc() {
+    const lastChar = calc.charAt(calc.length - 1);
+    if (!isNumberOrDot(lastChar)) return;
+
     setCalc((prevCalc) => (+eval(prevCalc).toFixed(5)).toString());
   }
 
